@@ -2,19 +2,19 @@
 class Form{
     constructor(){
         this.input = createInput('Input Your Name');
-        this.input.position(490,80);
+        this.input.position(width/2-50,height/2-100);
 
         this.button = createButton('Click here to enter');
-        this.button.position(490,480);
+        this.button.position(width/2-25,height/2+100);
 
         this.greeting = createElement('H3');
-        this.greeting.position(490,250);
+        this.greeting.position((width/2)-50,height/2);
     }
 
     display(){
         var title = createElement('H1');
         title.html('Car Racing Game');
-        title.position(470,20);
+        title.position(width/2-100,10);
 
         this.button.mousePressed(() =>{
             this.input.hide();

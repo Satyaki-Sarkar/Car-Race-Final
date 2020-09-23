@@ -21,6 +21,11 @@ class Game {
             player.getCount();
             form=new Form();
             form.display();
+            car1 = createSprite(width/2-300,300,10,10);
+            car2 = createSprite(width/2-100,300,10,10);
+            car3 = createSprite(width/2+100,300,10,10);
+            car4 = createSprite(width/2+300,300,10,10);
+            cars = [car1,car2,car3,car4];
         }
     }
 
@@ -32,19 +37,25 @@ class Game {
         Player.getPlayerInfo();
         if(playerInfo!==undefined){
             var posY=50;
+            var carIndex = 0;
             for(var Plr in playerInfo){
+                posY = windowHeight-150 - playerInfo[Plr].distance;
+                cars[carIndex].y=posY;
                 if(Plr==="Player"+player.index){
-                    fill("Red");
+                    cars[carIndex].shapeColor="Red";
+                    camera.position.x=width/2;
+                    camera.position.y=cars[carIndex].y+10;
                 }else{
-                    fill(0);
+                    cars[carIndex].shapeColor="Blue";
                 }
-                text(playerInfo[Plr].name+":"+playerInfo[Plr].distance,20,posY);
-                posY=posY+50;
+                carIndex+=1;
             }
         }
         if(keyWentDown(UP_ARROW)){
             player.distance+=50;
             player.update();
         }
+
+        drawSprites();
     }
 }
