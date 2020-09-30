@@ -9,6 +9,9 @@ class Form{
 
         this.greeting = createElement('H3');
         this.greeting.position((width/2)-50,height/2);
+
+        this.resetButton = createButton('Click to Restart');
+        this.resetButton.position(width/2+150,50);
     }
 
     display(){
@@ -27,7 +30,14 @@ class Form{
             player.update();
 
             this.greeting.html("Hi " + player.name);
-        });  
+        });
+
+        this.resetButton.mousePressed(() =>{
+            game.updateState(0);
+            player.updateCount(0);
+            database.ref('Players').remove();
+            window.location.reload();
+        })  
     }
 
     hide(){
